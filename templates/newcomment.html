@@ -1,0 +1,19 @@
+
+  <body>
+    <div class="container">
+      <h1>Submit username and comment</h1>
+      <br>
+      <form action="" method="post">
+        <input type="text" placeholder="Username" name="username" value="{{
+          request.form.username }}">
+         <input type="comment" placeholder="Comment" name="comment" value="{{
+          request.form.comment }}">
+        <input class="btn btn-default" type="submit" value="Submit">
+      </form>
+      {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+      {% endif %}
+    </div>
+  </body>
+</html>
+
