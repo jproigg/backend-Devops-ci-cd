@@ -50,7 +50,7 @@ jobs:
         image: ${{env.REPO}}:${{github.sha}}
         acs-report-enable: true
         fail-build: false
-    - name: Build Dcoker image
+    - name: Push Dcoker image
       env:
         CONTAINER_IMAGE: ${{env.REPO}}:${{github.sha}}
         CONTAINER_IMAGE_LATEST: "${{ env.REPO }}:latest"
