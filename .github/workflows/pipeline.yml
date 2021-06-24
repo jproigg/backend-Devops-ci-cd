@@ -38,8 +38,11 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Build image
+      env:
+        CONTAINER_IMAGE: ${{env.REPO}}:${{github.sha}}
+        CONTAINER_IMAGE_LATEST: "${{ env.REPO }}:latest"
       run: |
-        docker build .
+        docker build -t  $CONTAINER_IMAGE -t $CONTAINER_IMAGE_LATEST .
     - name: Scan image
       uses: anchore/scan-action@v2
       id: scan
