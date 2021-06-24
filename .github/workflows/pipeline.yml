@@ -38,7 +38,13 @@ jobs:
     - name: Build image
       run: |
         docker build .
-        
+    - name: Scan image
+      uses: anchore/scan-action@v2
+      id: scan
+      with:
+        image: ${{env.REPO}}:${{github.sha}}
+        acs-report-enable: true
+        fail-build: true
         
 
     
