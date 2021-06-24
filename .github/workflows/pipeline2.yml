@@ -33,12 +33,12 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: SonarCloud Scan
-      uses: sonarsource/sonarcloud-github-action@v1.6
+      uses: sonarsource/sonarcloud-github-action@master
       with:
-         projectBaseDir: .
+         args: >
+           - Dsonar.organization=${{ secrets.SONAR_ORG }}
+           - Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
       env:
-        sonar.organization: ${{ secrets.SONAR_ORG }}
-        sonar.projectKey: ${{ secrets.SONAR_PROJECT_KEY }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           
