@@ -50,13 +50,13 @@ jobs:
         image: ${{env.REPO}}:${{github.sha}}
         acs-report-enable: true
         fail-build: false
-    - name: Push Dcoker image
+    - name: Push Docker image
       env:
         CONTAINER_IMAGE: ${{env.REPO}}:${{github.sha}}
         CONTAINER_IMAGE_LATEST: "${{ env.REPO }}:latest"
-        run: |
-          docker push $CONTAINER_IMAGE
-          docker push $CONTAINER_IMAGE_LATEST
+      run: |
+        docker push $CONTAINER_IMAGE 
+        docker push $CONTAINER_IMAGE_LATEST 
         
 
     
