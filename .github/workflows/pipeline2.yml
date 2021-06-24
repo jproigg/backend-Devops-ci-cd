@@ -35,7 +35,7 @@ jobs:
     - name: Official SonarQube Scan
       uses: SonarSource/sonarqube-scan-action@v1.0.0
       env:
-        SONAR_HOST_URL: localhost/127.0.0.1:9000
+        SONAR_HOST_URL: https://sonarcloud.io/dashboard?id=jproigg_backend-Devops-ci-cd
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       with:
@@ -69,4 +69,3 @@ jobs:
         docker push $CONTAINER_IMAGE 
         docker push $CONTAINER_IMAGE_LATEST 
         
-
