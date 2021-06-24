@@ -1,6 +1,10 @@
 name: Python application
 
-on: [push]
+on:
+  push:
+    branches: [ main ]
+  pull_request: 
+    branches: [ main ]
 
 jobs:
   build:
@@ -26,7 +30,8 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Test with pytest
-      run: |
-        export PYTHONPATH=app.py
-        python -m pytest    
+    - name: Official SonarQube Scan
+    - uses: SonarSource/sonarqube-scan-action@v1.0.0
+    - name: SonarQube Quality Gate Check
+    - uses: SonarSource/sonarqube-quality-gate-action@v1.0.0
+        
