@@ -6,7 +6,7 @@ on:
   pull_request: 
     branches: [ main ]
 env:
-  REPO: jproigg/backend-Devops-ci-cd
+  REPO: jproigg/backend-devops-ci-cd
 
 jobs:
   build:
