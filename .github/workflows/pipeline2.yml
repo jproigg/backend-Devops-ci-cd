@@ -34,9 +34,11 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@v1.6
+      with:
+         projectBaseDir: .
       env:
-        sonar.organization: jproigg_backend-Devops-ci-cd
-        sonar.projectKey: jproigg
+        sonar.organization: ${{ secrets.SONAR_ORG }}
+        sonar.projectKey: ${{ secrets.SONAR_PROJECT_KEY }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           
