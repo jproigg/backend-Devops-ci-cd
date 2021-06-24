@@ -36,12 +36,8 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Build image
-      env:
-        CONTAINER_IMAGE: ${{env.REPO}}:${{github.sha}}
-        CONTAINER_IMAGE_LATEST: "${{ env.REPO }}:latest"
-      
       run: |
-        docker build -t  $CONTAINER_IMAGE -t $CONTAINER_IMAGE_LATEST .
+        docker build .
         
         
 
