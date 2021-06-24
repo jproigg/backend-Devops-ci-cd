@@ -46,7 +46,7 @@ jobs:
       with:
         image: ${{env.REPO}}:${{github.sha}}
         acs-report-enable: true
-        fail-build: true
+        fail-build: false
         
 
     
