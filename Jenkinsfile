@@ -1,10 +1,17 @@
 pipeline {
-  agent { dockerfile true }
-  stages {
-    stage('python version1') {
-      steps {
-        sh 'python --version'
-      }
+    agent any
+
+    stages {
+        stage('build python') {
+            steps {
+              sh 'python app.py'
+            }
+        }
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+     
     }
-  }
-}  
+} 
