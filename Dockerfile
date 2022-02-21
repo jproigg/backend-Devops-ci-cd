@@ -1,4 +1,4 @@
-FROM python:3.9-alpine3.12
+FROM python:latest
 
 WORKDIR /app
 
@@ -8,6 +8,6 @@ ENV FLASK_RUN_HOST 0.0.0.0
 
 COPY requirements.txt requirements.txt
 
-RUN pip install -r requirements.txt
+RUN pip3 install -r requirements.txt
 
 CMD ["python", "app.py"]
