@@ -1,4 +1,3 @@
-
 pipeline {
   agent none
   environment {
@@ -41,13 +40,10 @@ pipeline {
       }
         steps{    
             script {
-                docker.withRegistry( '', registryCredential ) {
-                dockerImage.push()
+                    docker.withRegistry( '', registryCredential ) {
+                    dockerImage.push()
+                }
             }
         }
-      }
-    }
-
-
-
-
+     }
+  }
