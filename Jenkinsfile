@@ -1,11 +1,11 @@
 
 pipeline {
   agent none
-    environment {
-        registry = "jproigg/backend-devops-ci-cd"
-        registryCredential = 'dockerhub'
-        dockerImage = ''
-    }
+  environment {
+      registry = "jproigg/backend-devops-ci-cd"
+      registryCredential = 'dockerhub'
+      dockerImage = ''
+  }
 
   stages {
     stage('python version') {
