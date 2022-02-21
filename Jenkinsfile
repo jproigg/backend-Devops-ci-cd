@@ -24,9 +24,7 @@ pipeline {
     }
 
      stage('build docker image') {
-        agent {
-        docker { image 'python:latest'}
-      }
+        agent any
         steps {
             script {
                 dockerImage = docker.build registry
@@ -35,9 +33,7 @@ pipeline {
     }
 
      stage('push to docker hub') {
-        agent {
-        docker { image 'python:latest'}
-      }
+        agent any
         steps{    
             script {
                     docker.withRegistry( '', registryCredential ) {
