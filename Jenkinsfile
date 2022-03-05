@@ -1,5 +1,7 @@
 pipeline {
-  agent any
+  agent {
+    label "Linux"
+  }
   environment {
       registry = "jproigg/backend-devops-ci-cd"
       registryCredential = 'dockerhub'
