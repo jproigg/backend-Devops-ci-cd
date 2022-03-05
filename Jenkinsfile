@@ -1,5 +1,5 @@
 pipeline {
-  agent none
+  agent any
   environment {
       registry = "jproigg/backend-devops-ci-cd"
       registryCredential = 'dockerhub'
@@ -8,9 +8,6 @@ pipeline {
 
   stages {
     stage('docker version') {
-      agent {
-        label "Linux"
-      }
       steps {
         sh 'docker ps'
       }
