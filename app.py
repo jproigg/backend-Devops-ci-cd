@@ -23,7 +23,7 @@ comment_section = [{'user_name': 'Cross Cultural',
 
 @app.route("/")
 def index():
-    return "Welcome to the comment section <h1>COMMENT SECTION</h1>"
+    return "Welcome to the commemnt section <h1>COMMENT SECTION</h1>"
 
 
 @app.route("/comment_section", methods = ['GET'])
