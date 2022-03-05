@@ -1,7 +1,5 @@
 pipeline {
-  agent {
-    label "Linux"
-  }
+  agent none
   environment {
       registry = "jproigg/backend-devops-ci-cd"
       registryCredential = 'dockerhub'
@@ -9,12 +7,12 @@ pipeline {
   }
 
   stages {
-    stage('python version') {
+    stage('docker version') {
       agent {
-        docker { image 'python:latest'}
+        label "Linux"
       }
       steps {
-        sh 'python3 --version'
+        sh 'docker ps'
       }
     }
 
