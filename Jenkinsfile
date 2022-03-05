@@ -1,5 +1,7 @@
 pipeline {
-  agent none
+  agent {
+    label "Linux"
+  }
   environment {
       registry = "jproigg/backend-devops-ci-cd"
       registryCredential = 'dockerhub'
@@ -16,7 +18,7 @@ pipeline {
       }
     }
 
-    stage('compile application') {
+    stage('compile application and install dependencies') {
       agent { dockerfile true }
       steps {
         echo 'success'
