@@ -1,7 +1,5 @@
 pipeline {
-  agent {
-    label "Linux"
-  }
+  agent any
   environment {
       registry = "jproigg/backend-devops-ci-cd"
       registryCredential = 'dockerhub'
@@ -22,12 +20,12 @@ pipeline {
       }
     }
 
-     stage('build docker image') {
-        agent any
-        steps {
-            script {
-                dockerImage = docker.build registry
-            }
+    stage('build docker image') {
+      agent any
+      steps {
+          script {
+            dockerImage = docker.build registry
+          }
         }
     }
 
@@ -41,5 +39,24 @@ pipeline {
             }
         }
      }
+
+      stage('Stop running container') {
+          agent any
+          steps {
+              sh 'docker ps -f name=ng-video-game-db -q | xargs --no-run-if empty docker container stop'
+              sh 'docker container ls -a -f name=ng-video-game-db -q | xargs -r docker container rm'
+            }
+        }
+
+
+      stage('Deploy') {
+            agent any
+            steps{
+                script {
+                    dockerImage.run("-p 8096:5000 --rm --name ng-video-game-db")
+                }
+            }
+        }
+     
   }
 }
