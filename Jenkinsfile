@@ -40,20 +40,20 @@ pipeline {
         }
      }
 
-      /*stage('Stop running container') {
+      stage('Stop running container') {
           agent any
           steps {
               sh 'docker ps -f backend-Devops-ci-cd -q | xargs --no-run-if empty docker container stop'
               sh 'docker container ls -a -f backend-Devops-ci-cd -q | xargs -r docker container rm'
             }
-        }*/
+        }
 
 
       stage('Deploy') {
             agent any
             steps{
                 script {
-                    dockerImage.run("-p 8096:5001 --rm --backend-Devops-ci-cd")
+                    dockerImage.run("-p 8096:5000 --rm --name backend-Devops-ci-cd")
                 }
             }
         }
