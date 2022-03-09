@@ -43,8 +43,8 @@ pipeline {
       stage('Stop running container') {
           agent any
           steps {
-              sh 'docker ps -f name=ng-video-game-db -q | xargs --no-run-if empty docker container stop'
-              sh 'docker container ls -a -f name=ng-video-game-db -q | xargs -r docker container rm'
+              sh 'docker ps -f backend-Devops-ci-cd -q | xargs --no-run-if empty docker container stop'
+              sh 'docker container ls -a -f backend-Devops-ci-cd -q | xargs -r docker container rm'
             }
         }
 
@@ -53,7 +53,7 @@ pipeline {
             agent any
             steps{
                 script {
-                    dockerImage.run("-p 8096:5000 --rm --name ng-video-game-db")
+                    dockerImage.run("-p 8096:5001 --rm --backend-Devops-ci-cd")
                 }
             }
         }
