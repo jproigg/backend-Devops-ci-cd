@@ -1,8 +1,6 @@
 # imagen base
-FROM alpine:3.5
+FROM python:latest
 
-# Install python and pip
-RUN apk add --update py2-pip
 
 # install requirements
 COPY requirements.txt /usr/src/app/
