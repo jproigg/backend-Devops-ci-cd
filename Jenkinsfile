@@ -7,20 +7,36 @@ pipeline {
   }
 
   stages {
-    stage('docker version') {
+    stage('Check images') {
       steps {
         sh 'docker ps'
       }
     }
 
-    /*stage('compile application and install dependencies') {
+    stage ('Lint test') {
+        agent {
+            docker { image 'eeacms/pylint'}
+            }
+        steps {
+            sh "pylint app.py --exit-zero"
+        }
+    }
+
+    stage('Install dependencies and compile application') {
       agent { dockerfile true }
       steps {
         echo 'success'
       }
-    }*/
+    }
 
-    stage('build docker image') {
+    stage('Stop and remove running container') {
+        agent any
+        steps {
+            sh 'docker stop backend-Devops-ci-cd || true && docker rm backend-Devops-ci-cd || true'
+            }
+        }    
+
+    stage('Build docker image') {
       agent any
       steps {
           script {
@@ -29,7 +45,7 @@ pipeline {
         }
     }
 
-     stage('push to docker hub') {
+     stage('Push image to docker hub') {
         agent any
         steps{    
             script {
@@ -40,16 +56,8 @@ pipeline {
         }
      }
 
-      stage('Stop running container') {
-          agent any
-          steps {
-              sh 'docker ps -f backend-Devops-ci-cd -q | xargs --no-run-if empty docker container stop'
-              sh 'docker container ls -a -f backend-Devops-ci-cd -q | xargs -r docker container rm'
-            }
-        }
 
-
-      stage('Deploy') {
+      stage('Deploy application') {
             agent any
             steps{
                 script {
