@@ -13,14 +13,14 @@ pipeline {
       }
     }
 
-    stage ('Lint test') {
+    /*stage ('Lint test') {
         agent {
             docker { image 'eeacms/pylint'}
             }
         steps {
             sh "pylint app.py --exit-zero"
         }
-    }
+    }*/
 
     stage('Install dependencies and compile application') {
       agent { dockerfile true }
