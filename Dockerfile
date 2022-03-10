@@ -10,7 +10,7 @@ RUN pip install --no-cache-dir -r /usr/src/app/requirements.txt
 
 # copy archivos 
 COPY app.py /usr/src/app/
-COPY templates/index.html /usr/src/app/templates/
+COPY templates/newcomment2.html /usr/src/app/templates/
 
 # puerto
 EXPOSE 5000
